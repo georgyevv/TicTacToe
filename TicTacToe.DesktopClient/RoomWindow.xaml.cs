@@ -95,12 +95,15 @@
             this.LabelAvailableGames.Visibility = Visibility.Collapsed;
             this.ButtonJoinGame.Visibility = Visibility.Collapsed;
             this.ButtonCreateGame.Visibility = Visibility.Collapsed;
+
+            this.ButtonCreateGame.IsEnabled = false;
         }
 
         private void ClickJoinGameButton(object sender, RoutedEventArgs e)
         {
             if (this.ListBoxAvailableGames.SelectedItem != null)
             {
+                this.ButtonJoinGame.IsEnabled = false;
                 HttpClient _httpClient = new HttpClient();
                 var selectedGame = this.ListBoxAvailableGames.SelectedItem as GameData;
                 var bearer = "Bearer " + loginData.Access_Token;
@@ -130,6 +133,7 @@
 
         private void ClickSubmitCreateGameButton(object sender, RoutedEventArgs e)
         {
+            this.ButtonOk.IsEnabled = false;
             CreateGame();
         }
 

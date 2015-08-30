@@ -32,11 +32,13 @@
 
         private void ClickRegisterButton(object sender, RoutedEventArgs e)
         {
+            this.RegisterButton.IsEnabled = false;
             Register();
         }
 
         private void ClickLogButton(object sender, RoutedEventArgs e)
         {
+            this.ButtonLog.IsEnabled = false;
             LogIn();
         }
 
@@ -67,6 +69,7 @@
             else
             {
                 MessageBox.Show(await response.Content.ReadAsStringAsync());
+                this.ButtonLog.IsEnabled = true;
             }
         }
 
@@ -92,6 +95,7 @@
             else
             {
                 MessageBox.Show(await response.Content.ReadAsStringAsync());
+                this.RegisterButton.IsEnabled = true;
             }
         }
     }
