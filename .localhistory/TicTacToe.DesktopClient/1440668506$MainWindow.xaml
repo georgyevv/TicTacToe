@@ -1,0 +1,30 @@
+﻿<Window x:Class="TicTacToe.DesktopClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="450" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="67*"/>
+            <RowDefinition Height="106*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="294*"/>
+            <ColumnDefinition Width="223*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="45,72,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Content="Passsword" HorizontalAlignment="Left" Margin="45,100,0,0" VerticalAlignment="Top" Grid.Row="1" RenderTransformOrigin="0.831,-4.769"/>
+        <TextBox Name="RegisterEmail" HorizontalAlignment="Left" Height="26" Margin="119,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+        <Button Content="Register" HorizontalAlignment="Left" Margin="96,148,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1" Click="Button_RegisterClick"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="14,75,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="Passsword" HorizontalAlignment="Left" Margin="14,101,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+        <TextBox Name="LogEmail" HorizontalAlignment="Left" Height="23" Margin="88,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Log In" HorizontalAlignment="Left" Margin="65,148,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1" Click="Button_LogClick"/>
+        <Label Content="Username&#xD;&#xA;" HorizontalAlignment="Left" Margin="45,44,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox Name="RegisterUserName" HorizontalAlignment="Left" Height="23" Margin="119,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+        <Label Content="Tic Tac Tie" FontSize="40" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="152,41,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="221"/>
+        <Label Content="by georgyevv" HorizontalAlignment="Left" Margin="285,104,0,0" VerticalAlignment="Top" Width="88" Grid.ColumnSpan="2"/>
+        <PasswordBox Name="RegisterPassword" HorizontalAlignment="Left" Height="23" Margin="119,106,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox Name="LogPassword" HorizontalAlignment="Left" Height="23" Margin="88,103,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+
+    </Grid>
+</Window>
