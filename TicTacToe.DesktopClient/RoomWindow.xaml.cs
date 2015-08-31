@@ -1,4 +1,6 @@
-﻿namespace TicTacToe.DesktopClient
+﻿using TicTacToe.DesktopClient.Windows;
+
+namespace TicTacToe.DesktopClient
 {
     using System;
     using System.Collections.Generic;
@@ -23,7 +25,8 @@
     {
         ////////////////////////////////////
         private IHubProxy HubProxy { get; set; }
-        private const string ServerUri = "http://tictactoe-18.apphb.com/signalr";
+        //private const string ServerUri = "http://tictactoe-18.apphb.com/signalr";
+        private const string ServerUri = "http://localhost:61587/signalr"; // TODO: Comment this in production!
         private HubConnection Connection { get; set; }
         ///////////////////////////////////
         private bool shouldCloseWindow;
@@ -48,7 +51,7 @@
 
         public async void UpdateRooms()
         {
-            HttpClient _httpClient=new HttpClient();
+            HttpClient _httpClient = new HttpClient();
             var bearer = "Bearer " + loginData.Access_Token;
             _httpClient.DefaultRequestHeaders.Add("Authorization", bearer);
             var response = await _httpClient.GetAsync(Endpoint.AvailableGames);
@@ -86,6 +89,7 @@
 
         private void ClickCreateGameButton(object sender, RoutedEventArgs e)
         {
+            this.ButtonCancel.Visibility = Visibility.Visible;
             this.LabelNewGameHeader.Visibility = Visibility.Visible;
             this.TextBoxGameName.Visibility = Visibility.Visible;
             this.ButtonOk.Visibility = Visibility.Visible;
@@ -93,10 +97,9 @@
 
             this.ListBoxAvailableGames.Visibility = Visibility.Collapsed;
             this.LabelAvailableGames.Visibility = Visibility.Collapsed;
-            this.ButtonJoinGame.Visibility = Visibility.Collapsed;
-            this.ButtonCreateGame.Visibility = Visibility.Collapsed;
 
             this.ButtonCreateGame.IsEnabled = false;
+            this.ButtonJoinGame.IsEnabled = false;
         }
 
         private void ClickJoinGameButton(object sender, RoutedEventArgs e)
@@ -137,13 +140,41 @@
             CreateGame();
         }
 
+        private void ClickCancelButton(object sender, RoutedEventArgs e)
+        {
+            this.ButtonCancel.Visibility = Visibility.Collapsed;
+            this.LabelNewGameHeader.Visibility = Visibility.Collapsed;
+            this.TextBoxGameName.Visibility = Visibility.Collapsed;
+            this.ButtonOk.Visibility = Visibility.Collapsed;
+            this.LabelNewGameLabel.Visibility = Visibility.Collapsed;
+
+            this.ListBoxAvailableGames.Visibility = Visibility.Visible;
+            this.LabelAvailableGames.Visibility = Visibility.Visible;
+
+            this.ButtonCreateGame.IsEnabled = true;
+            this.ButtonJoinGame.IsEnabled = true;
+        }
+
+        private void ClickModesButton(object sender, RoutedEventArgs e)
+        {
+            var placment = this.GetPlacement();
+            ModesWindow modesWindow = new ModesWindow(this.loginData, placment);
+            modesWindow.Show();
+            this.Close();
+        }
+
+        private void ClickExitButton(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
         private async void HubConnectAsync()
         {
             Connection = new HubConnection(ServerUri);
             HubProxy = Connection.CreateHubProxy("GameHub");
             HubProxy.On("UpdateRooms", () =>
                 this.Dispatcher.Invoke(UpdateRooms));
-            
+
             await Connection.Start();
         }
 

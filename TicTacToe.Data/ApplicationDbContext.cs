@@ -9,8 +9,15 @@ namespace TicTacToe.Data
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        // TODO: Uncomment this in production!
+        //public ApplicationDbContext()
+        //    : base("TicTacToeContext", throwIfV1Schema: false)
+        //{
+        //    Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+        //}
+
         public ApplicationDbContext()
-            : base("TicTacToeContext", throwIfV1Schema: false)
+            : base("PCContext", throwIfV1Schema: false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }

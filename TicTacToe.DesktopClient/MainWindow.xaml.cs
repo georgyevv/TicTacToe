@@ -1,4 +1,6 @@
-﻿namespace TicTacToe.DesktopClient
+﻿using TicTacToe.DesktopClient.Windows;
+
+namespace TicTacToe.DesktopClient
 {
     using TicTacToe.DesktopClient.User;
     using System;
@@ -22,29 +24,53 @@
     {
         private LoginData _loginData;
         private HttpClient _httpClient;
+        private string _placement;
 
         public MainWindow()
         {
             this._httpClient = new HttpClient();
             InitializeComponent();
-            this.LogEmail.Focus();
+            this.LogUsername.Focus();
+        }
+
+        public MainWindow(string placement = null)
+        {
+            this._placement = placement;
+            this._httpClient = new HttpClient();
+            InitializeComponent();
+            this.LogUsername.Focus();
+        }
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+            if (!string.IsNullOrEmpty(_placement))
+            {
+                this.SetPlacement(_placement);
+            }
         }
 
         private void ClickRegisterButton(object sender, RoutedEventArgs e)
         {
+            this.LogUsername.IsEnabled = false;
+            this.LogPassword.IsEnabled = false;
             this.RegisterButton.IsEnabled = false;
+            this.ButtonLog.IsEnabled = false;
             Register();
         }
 
         private void ClickLogButton(object sender, RoutedEventArgs e)
         {
+            this.LogUsername.IsEnabled = false;
+            this.LogPassword.IsEnabled = false;
             this.ButtonLog.IsEnabled = false;
+            this.RegisterButton.IsEnabled = false;
             LogIn();
         }
 
         private async void LogIn()
         {
-            var email = this.LogEmail.Text;
+            var email = this.LogUsername.Text;
             var password = this.LogPassword.Password;
 
             var content = new FormUrlEncodedContent(new[]
@@ -62,7 +88,7 @@
             if (response.IsSuccessStatusCode)
             {
                 var placement = this.GetPlacement();
-                RoomWindow roomWindow = new RoomWindow(_loginData, placement);
+                ModesWindow roomWindow = new ModesWindow(_loginData, placement);
                 roomWindow.Show();
                 this.Close();
             }
@@ -70,17 +96,20 @@
             {
                 MessageBox.Show(await response.Content.ReadAsStringAsync());
                 this.ButtonLog.IsEnabled = true;
+                this.RegisterButton.IsEnabled = true;
+                this.LogUsername.IsEnabled = true;
+                this.LogPassword.IsEnabled = true;
             }
         }
 
         private async void Register()
         {
-            var email = this.RegisterEmail.Text;
-            var password = this.RegisterPassword.Password;
+            var email = this.LogUsername.Text;
+            var password = this.LogPassword.Password;
 
             var content = new FormUrlEncodedContent(new[]
             {
-                new KeyValuePair<string, string>("email", email),
+                new KeyValuePair<string, string>("username", email),
                 new KeyValuePair<string, string>("password", password),
                 new KeyValuePair<string, string>("ConfirmPAssword", password),
                 new KeyValuePair<string, string>("grant_type", "password")
@@ -95,8 +124,11 @@
             else
             {
                 MessageBox.Show(await response.Content.ReadAsStringAsync());
-                this.RegisterButton.IsEnabled = true;
             }
+            this.ButtonLog.IsEnabled = true;
+            this.RegisterButton.IsEnabled = true;
+            this.LogUsername.IsEnabled = true;
+            this.LogPassword.IsEnabled = true;
         }
     }
 }
