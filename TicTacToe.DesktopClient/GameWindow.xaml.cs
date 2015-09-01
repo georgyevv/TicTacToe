@@ -23,8 +23,8 @@
     {
         ////////////////////////////////////
         public IHubProxy HubProxy { get; set; }
-        //private const string ServerURI = "http://tictactoe-18.apphb.com/signalr";
-        private const string ServerURI = "http://localhost:61587/signalr"; // TODO: Comment this in production!
+        private const string ServerURI = "http://tictactoe-18.apphb.com/signalr";
+        //private const string ServerURI = "http://localhost:61587/signalr"; // TODO: Comment this in production!
         public HubConnection Connection { get; set; }
         ///////////////////////////////////
         private LoginData loginData;

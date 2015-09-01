@@ -17,7 +17,7 @@
         <Label Content="Available games" Name="LabelAvailableGames" FontSize="25" HorizontalAlignment="Left" Margin="116,21,0,0" VerticalAlignment="Top" Width="192"/>
         <Button Content="Create game" Name="ButtonCreateGame" HorizontalAlignment="Left" Margin="295,174,0,0" VerticalAlignment="Top" Width="98" Height="36" Click="ClickCreateGameButton"/>
         <Button Content="Join game" Name="ButtonJoinGame" HorizontalAlignment="Left" Margin="295,230,0,0" VerticalAlignment="Top" Width="98" Height="36" Click="ClickJoinGameButton"/>
-        <Label x:Name="LabelNoGamesAvailable" Visibility="Collapsed" Content="No current available games.." HorizontalAlignment="Left" Margin="137,220,0,0" VerticalAlignment="Top" Width="169"/>
+        <Label x:Name="LabelNoGamesAvailable" Visibility="Collapsed" Content="No current available games.." HorizontalAlignment="Left" Margin="71,237,0,0" VerticalAlignment="Top" Width="169"/>
 
         <Label Visibility="Collapsed" Name="LabelNewGameHeader" Content="Create new game&#xD;&#xA;" FontSize="25" HorizontalAlignment="Left" Margin="113,64,0,0" VerticalAlignment="Top" Height="48" Width="213"/>
         <Label Visibility="Collapsed" Name="LabelNewGameLabel" Content="Name&#xD;&#xA;" HorizontalAlignment="Left" Margin="45,230,0,0" VerticalAlignment="Top" Height="25" Width="47"/>

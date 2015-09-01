@@ -25,8 +25,8 @@ namespace TicTacToe.DesktopClient
     {
         ////////////////////////////////////
         private IHubProxy HubProxy { get; set; }
-        //private const string ServerUri = "http://tictactoe-18.apphb.com/signalr";
-        private const string ServerUri = "http://localhost:61587/signalr"; // TODO: Comment this in production!
+        private const string ServerUri = "http://tictactoe-18.apphb.com/signalr";
+        //private const string ServerUri = "http://localhost:61587/signalr"; // TODO: Comment this in production!
         private HubConnection Connection { get; set; }
         ///////////////////////////////////
         private bool shouldCloseWindow;
@@ -97,6 +97,7 @@ namespace TicTacToe.DesktopClient
 
             this.ListBoxAvailableGames.Visibility = Visibility.Collapsed;
             this.LabelAvailableGames.Visibility = Visibility.Collapsed;
+            this.LabelNoGamesAvailable.Visibility = Visibility.Collapsed;
 
             this.ButtonCreateGame.IsEnabled = false;
             this.ButtonJoinGame.IsEnabled = false;
@@ -153,6 +154,7 @@ namespace TicTacToe.DesktopClient
 
             this.ButtonCreateGame.IsEnabled = true;
             this.ButtonJoinGame.IsEnabled = true;
+            UpdateRooms();
         }
 
         private void ClickModesButton(object sender, RoutedEventArgs e)
