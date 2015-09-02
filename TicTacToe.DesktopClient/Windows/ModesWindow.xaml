@@ -8,8 +8,8 @@
         Title="Tic Tac Toe" Height="453" Width="431">
     <Grid>
         <Label x:Name="LabelHeader" Content="Pick mode" FontSize="25" HorizontalAlignment="Left" Margin="142,40,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="ButtonSinglePlayer" Content="Single Player" HorizontalAlignment="Left" Margin="107,162,0,0" VerticalAlignment="Top" Width="200" Height="40"/>
-        <Button x:Name="ButtonMultiPlayer" Content="Multi Player" HorizontalAlignment="Left" Margin="107,222,0,0" VerticalAlignment="Top" Width="200" Height="40"/>
+        <Button x:Name="ButtonSinglePlayer" Content="Single Player" HorizontalAlignment="Left" Margin="107,162,0,0" VerticalAlignment="Top" Width="200" Height="40" Click="ButtonSinglePlayer_Click"/>
+        <Button x:Name="ButtonMultiPlayer" Content="Multi Player" HorizontalAlignment="Left" Margin="107,222,0,0" VerticalAlignment="Top" Width="200" Height="40" Click="ButtonMultiPlayer_Click"/>
         <Button x:Name="ButtonOnline" Content="Online" HorizontalAlignment="Left" Margin="107,285,0,0" VerticalAlignment="Top" Width="200" Height="40" Click="ButtonOnline_Click"/>
         <Button x:Name="ButtonExit" Content="Exit" HorizontalAlignment="Left" Margin="107,348,0,0" VerticalAlignment="Top" Width="84" Height="35" Click="ButtonExit_Click"/>
         <Button x:Name="ButtonLogOff" Content="Log off" HorizontalAlignment="Left" Margin="223,348,0,0" VerticalAlignment="Top" Width="84" Height="35" Click="ButtonLogOff_Click"/>

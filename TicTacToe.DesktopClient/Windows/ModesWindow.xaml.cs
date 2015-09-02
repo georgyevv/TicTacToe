@@ -57,5 +57,21 @@ namespace TicTacToe.DesktopClient.Windows
             mainWindow.Show();
             this.Close();
         }
+
+        private void ButtonMultiPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            var placement = this.GetPlacement();
+            GameWindow gameWindow = new GameWindow(this._loginData, placement, GameMode.Multiplayer);
+            gameWindow.Show();
+            this.Close();
+        }
+
+        private void ButtonSinglePlayer_Click(object sender, RoutedEventArgs e)
+        {
+            var placement = this.GetPlacement();
+            GameWindow gameWindow = new GameWindow(this._loginData, placement, GameMode.Singleplayer);
+            gameWindow.Show();
+            this.Close();
+        }
     }
 }

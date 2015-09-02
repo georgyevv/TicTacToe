@@ -115,8 +115,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\ExtensionMethods.cs" />
+    <Compile Include="Common\GameMode.cs" />
+    <Compile Include="Common\GameState.cs" />
     <Compile Include="Common\Test.cs" />
-    <Compile Include="Game\GameData.cs" />
+    <Compile Include="Game\MultiPlayerGame.cs" />
+    <Compile Include="Game\OnlineGame.cs" />
+    <Compile Include="Game\IGameData.cs" />
+    <Compile Include="Game\SinglePlayerGame.cs" />
     <Compile Include="RoomWindow.xaml.cs">
       <DependentUpon>RoomWindow.xaml</DependentUpon>
     </Compile>

@@ -11,7 +11,7 @@ namespace TicTacToe.Data
     {
         // TODO: Uncomment this in production!
         public ApplicationDbContext()
-            : base("TicTacToeContext", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }

@@ -25,7 +25,8 @@ namespace TicTacToe.DesktopClient
     {
         ////////////////////////////////////
         private IHubProxy HubProxy { get; set; }
-        private const string ServerUri = "http://tictactoe-18.apphb.com/signalr";
+        private const string ServerUri = "http://3t.azurewebsites.net/signalr";
+        //private const string ServerUri = "http://tictactoe-18.apphb.com/signalr";
         //private const string ServerUri = "http://localhost:61587/signalr"; // TODO: Comment this in production!
         private HubConnection Connection { get; set; }
         ///////////////////////////////////
@@ -59,7 +60,7 @@ namespace TicTacToe.DesktopClient
             if (response.IsSuccessStatusCode)
             {
                 var games = await response.Content
-                    .ReadAsAsync<IEnumerable<GameData>>();
+                    .ReadAsAsync<IEnumerable<OnlineGame>>();
 
                 this.ListBoxAvailableGames.ItemsSource = games;
                 if (games != null && !games.Any())
@@ -109,7 +110,7 @@ namespace TicTacToe.DesktopClient
             {
                 this.ButtonJoinGame.IsEnabled = false;
                 HttpClient _httpClient = new HttpClient();
-                var selectedGame = this.ListBoxAvailableGames.SelectedItem as GameData;
+                var selectedGame = this.ListBoxAvailableGames.SelectedItem as OnlineGame;
                 var bearer = "Bearer " + loginData.Access_Token;
 
                 var content = new FormUrlEncodedContent(new[]
@@ -119,12 +120,12 @@ namespace TicTacToe.DesktopClient
 
                 _httpClient.DefaultRequestHeaders.Add("Authorization", bearer);
                 var response = _httpClient.PostAsync(Endpoint.JoinGame, content).Result;
-                var gameData = response.Content.ReadAsAsync<GameData>().Result;
+                var gameData = response.Content.ReadAsAsync<OnlineGame>().Result;
 
                 if (response.IsSuccessStatusCode)
                 {
                     var placement = this.GetPlacement();
-                    GameWindow gameWindow = new GameWindow(loginData, gameData, placement);
+                    GameWindow gameWindow = new GameWindow(loginData, placement, GameMode.Online, gameData);
                     gameWindow.Show();
                     this.Close();
                 }
@@ -193,12 +194,12 @@ namespace TicTacToe.DesktopClient
 
             _httpClient.DefaultRequestHeaders.Add("Authorization", bearer);
             var response = await _httpClient.PostAsync(Endpoint.CreateGame, content);
-            var gameData = await response.Content.ReadAsAsync<GameData>();
+            var gameData = await response.Content.ReadAsAsync<OnlineGame>();
 
             if (response.IsSuccessStatusCode)
             {
                 var placement = this.GetPlacement();
-                GameWindow gameWindow = new GameWindow(loginData, gameData, placement);
+                GameWindow gameWindow = new GameWindow(loginData, placement, GameMode.Online, gameData);
                 HubProxy.Invoke("UpdateRooms");
                 gameWindow.Show();
                 this.Close();
