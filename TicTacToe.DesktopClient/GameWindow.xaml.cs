@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace TicTacToe.DesktopClient
 {
@@ -67,7 +69,9 @@ namespace TicTacToe.DesktopClient
                 this.gameData = new SinglePlayerGame()
                 {
                     FirstPlayerName = this.loginData.UserName,
-
+                    EnumGameState = GameState.FirstPlayer,
+                    Field = new String('0', 9),
+                    Name = "Singleplayer"
                 };
             }
         }
@@ -116,6 +120,7 @@ namespace TicTacToe.DesktopClient
                 if (this.gameData.EnumGameState == GameState.FirstPlayer)
                 {
                     SinglePlayerMove(buttonPosition, button);
+                    AIMove(buttonPosition, button);
                 }
             }
             else if (this.gameMode == GameMode.Multiplayer)
@@ -128,9 +133,99 @@ namespace TicTacToe.DesktopClient
             }
         }
 
+        private async Task AIMove(string buttonPosition, Button button)
+        {
+            if (this.gameData.EnumGameState == GameState.SecondPlayer)
+            {
+                Thread.Sleep(100);
+                Random rand = new Random();
+                var aiPosition = rand.Next(0, 9);
+                List<Button> buttons = new List<Button>()
+                {
+                    this.Button0,
+                    this.Button1,
+                    this.Button2,
+                    this.Button3,
+                    this.Button4,
+                    this.Button5,
+                    this.Button6,
+                    this.Button7,
+                    this.Button8,
+                };
+
+                while (this.gameData.Field[aiPosition] != '0')
+                {
+                    aiPosition = rand.Next(0, 9);
+                }
+
+                buttons[aiPosition].Content = "X";
+                StringBuilder stringBuilder = new StringBuilder(this.gameData.Field);
+                stringBuilder[aiPosition] = 'X';
+                this.gameData.Field = stringBuilder.ToString();
+                this.gameData.EnumGameState = GameState.FirstPlayer;
+
+                var winner = CheckForWinner(stringBuilder.ToString());
+
+                if (winner == GameState.WinFirstPlayer)
+                {
+                    this.gameData.EnumGameState = GameState.WinFirstPlayer;
+                    MessageBox.Show("You win!");
+                    return;
+                }
+                if (winner == GameState.WinSecondPlayer)
+                {
+                    this.gameData.EnumGameState = GameState.WinSecondPlayer;
+                    MessageBox.Show("Bot win!");
+                    return;
+                }
+                if (winner == GameState.Draw)
+                {
+                    this.gameData.EnumGameState = GameState.Draw;
+                    MessageBox.Show("Draw!");
+                    return;
+                }
+            }
+        }
+
         private void SinglePlayerMove(string buttonPosition, Button button)
         {
-            button.Content = "O";
+            if (this.gameData.EnumGameState == GameState.FirstPlayer)
+            {
+                var field = new StringBuilder(this.gameData.Field);
+
+                if (field[int.Parse(buttonPosition)] != '0')
+                {
+                    MessageBox.Show("You cannot place there!");
+                    return;
+                }
+
+                button.Content = "O";
+                field[int.Parse(buttonPosition)] = 'O';
+                this.gameData.Field = field.ToString();
+
+                var winner = CheckForWinner(field.ToString());
+
+                if (winner == GameState.WinFirstPlayer)
+                {
+                    this.gameData.EnumGameState = GameState.WinFirstPlayer;
+                    MessageBox.Show("You win!");
+                    return;
+                }
+                if (winner == GameState.WinSecondPlayer)
+                {
+                    this.gameData.EnumGameState = GameState.WinSecondPlayer;
+                    MessageBox.Show("Bot win!");
+                    return;
+                }
+                if (winner == GameState.Draw)
+                {
+                    this.gameData.EnumGameState = GameState.Draw;
+                    MessageBox.Show("Draw!");
+                    return;
+                }
+
+                this.gameData.EnumGameState = GameState.SecondPlayer;
+            }
         }
 
         private void MultiPlayerMove(string buttonPosition, Button button)
@@ -168,7 +263,7 @@ namespace TicTacToe.DesktopClient
                 return;
             }
 
-            this.gameData.EnumGameState = this.gameData.EnumGameState == GameState.FirstPlayer 
+            this.gameData.EnumGameState = this.gameData.EnumGameState == GameState.FirstPlayer
                 ? GameState.SecondPlayer : GameState.FirstPlayer;
         }
 
@@ -339,6 +434,5 @@ namespace TicTacToe.DesktopClient
 
             return false;
         }
-
     }
 }
