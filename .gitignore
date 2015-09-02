@@ -215,3 +215,5 @@ ModelManifest.xml
 packages/
 obj/
 bin/
+.localhistory/
+.vs/	
