@@ -15,11 +15,11 @@
             <Button Name="Button7" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="60" Click="FieldButtonClick" Margin="75,120,0,0"/>
             <Button Name="Button8" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="60" Click="FieldButtonClick" Margin="150,120,0,0"/>
         </Grid>
-        <Label Name="LabelFirstPlayer" Content="" HorizontalAlignment="Center" Margin="54,79,253,0" VerticalAlignment="Top" Width="107" Height="36"/>
-        <Label Name="LabelSecondPlayer"  Content="" HorizontalAlignment="Center" Margin="244,79,63,0" VerticalAlignment="Top" Width="107" Height="36"/>
+        <Label Name="LabelFirstPlayer" HorizontalContentAlignment="Left" Content="" HorizontalAlignment="Center" Margin="86,79,221,0" VerticalAlignment="Top" Width="107" Height="36"/>
+        <Label Name="LabelSecondPlayer" HorizontalContentAlignment="Right"  Content="" HorizontalAlignment="Center" Margin="212,79,95,0" VerticalAlignment="Top" Width="107" Height="36"/>
         <Button Content="Exit" HorizontalAlignment="Left" Margin="235,377,0,0" VerticalAlignment="Top" Width="75" Click="ExitGameButtonClick"/>
-        <Label Name="LabelGameState" Content="" HorizontalAlignment="Center" Margin="86,132,0,0" VerticalAlignment="Top" Width="233"/>
-        <Label Name="LabelGameName" Content="" FontSize="25" HorizontalAlignment="Center" Margin="146,10,126,0" VerticalAlignment="Top" Height="47" Width="142"/>
+        <Label Name="LabelGameState" HorizontalContentAlignment="Center" Content="" HorizontalAlignment="Center" Margin="86,146,95,0" VerticalAlignment="Top" Width="233"/>
+        <Label Name="LabelGameName" Content="" FontSize="25" HorizontalAlignment="Center" Margin="86,10,104,0" VerticalAlignment="Top" HorizontalContentAlignment="Center"  Height="47" Width="224"/>
         <Button Name="ButtonQuitGame" Content="Quit Game" HorizontalAlignment="Left" Margin="86,377,0,0" VerticalAlignment="Top" Width="75" Click="QuitGameButtonClick"/>
 
     </Grid>
