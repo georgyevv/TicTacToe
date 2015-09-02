@@ -90,7 +90,7 @@ namespace TicTacToe.DesktopClient
             if (this.gameMode == GameMode.Online)
             {
                 if (this.gameData.GameState == "FirstPlayerTurn" ||
-               this.gameData.GameState == "SecondPlayerTurn")
+                    this.gameData.GameState == "SecondPlayerTurn")
                 {
                     HttpClient _httpClient = new HttpClient();
                     var bearer = "Bearer " + loginData.Access_Token;
@@ -247,13 +247,13 @@ namespace TicTacToe.DesktopClient
             if (winner == GameState.WinFirstPlayer)
             {
                 this.gameData.EnumGameState = GameState.WinFirstPlayer;
-                MessageBox.Show("First player win!");
+                MessageBox.Show(this.gameData.FirstPlayerName + " win!");
                 return;
             }
             if (winner == GameState.WinSecondPlayer)
             {
                 this.gameData.EnumGameState = GameState.WinSecondPlayer;
-                MessageBox.Show("Second player win!");
+                MessageBox.Show("Other guy win!");
                 return;
             }
             if (winner == GameState.Draw)
