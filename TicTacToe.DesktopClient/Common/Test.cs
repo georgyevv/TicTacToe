@@ -14,7 +14,6 @@ namespace TicTacToe.DesktopClient.Common
     using System.Text;
     using System.Xml;
     using System.Xml.Serialization;
-    // RECT structure required by WINDOWPLACEMENT structure
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
     public struct RECT
