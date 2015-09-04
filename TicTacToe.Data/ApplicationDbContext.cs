@@ -1,21 +1,27 @@
 namespace TicTacToe.Data
 {
-    using System;
-    using System.Data.Entity;
-    using TicTacToe.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Data.Entity;
     using TicTacToe.Data.Migrations;
-    using System.Linq;
+    using TicTacToe.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        // TODO: Uncomment this in production!
+#if DEBUG
+        public ApplicationDbContext()
+            : base("PCContext", throwIfV1Schema: false)
+        {
+            Database.SetInitializer(
+                new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+        }
+#else
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
+#endif
 
         public static ApplicationDbContext Create()
         {
