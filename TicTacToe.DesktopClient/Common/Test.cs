@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Interop;
-
-namespace TicTacToe.DesktopClient.Common
+﻿namespace TicTacToe.DesktopClient.Common
 {
+    using System.Windows;
+    using System.Windows.Interop;
     using System;
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Text;
     using System.Xml;
     using System.Xml.Serialization;
+
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
     public struct RECT

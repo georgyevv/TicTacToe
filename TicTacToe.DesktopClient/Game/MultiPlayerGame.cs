@@ -1,8 +1,7 @@
-﻿using System;
-using TicTacToe.DesktopClient.Common;
-
-namespace TicTacToe.DesktopClient.Game
+﻿namespace TicTacToe.DesktopClient.Game
 {
+    using TicTacToe.DesktopClient.Common;
+
     public class MultiPlayerGame : IGameData
     {
         public int Id { get; set; }

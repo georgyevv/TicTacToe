@@ -1,7 +1,7 @@
-﻿using TicTacToe.DesktopClient.Common;
-
-namespace TicTacToe.DesktopClient.Game
+﻿namespace TicTacToe.DesktopClient.Game
 {
+    using TicTacToe.DesktopClient.Common;
+
     public interface IGameData
     {
         int Id { get; set; }

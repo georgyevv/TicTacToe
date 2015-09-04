@@ -13,14 +13,9 @@ namespace TicTacToe.Data
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+            Database.SetInitializer(
+                new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
-
-        //public ApplicationDbContext()
-        //    : base("PCContext", throwIfV1Schema: false)
-        //{
-        //    Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
-        //}
 
         public static ApplicationDbContext Create()
         {

@@ -1,7 +1,7 @@
-﻿using TicTacToe.DesktopClient.Common;
-
-namespace TicTacToe.DesktopClient.Game
+﻿namespace TicTacToe.DesktopClient.Game
 {
+    using TicTacToe.DesktopClient.Common;
+
     public class OnlineGame : IGameData
     {
         public int Id { get; set; }
@@ -15,6 +15,7 @@ namespace TicTacToe.DesktopClient.Game
         public string GameState { get; set; }
 
         public string Field { get; set; }
+
         public GameState EnumGameState { get; set; }
     }
 }

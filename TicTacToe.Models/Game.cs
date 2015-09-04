@@ -1,8 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace TicTacToe.Models
+﻿namespace TicTacToe.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Game
     {

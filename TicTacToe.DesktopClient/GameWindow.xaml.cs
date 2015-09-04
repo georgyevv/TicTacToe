@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace TicTacToe.DesktopClient
+﻿namespace TicTacToe.DesktopClient
 {
+    using Microsoft.AspNet.SignalR.Client;
     using System;
+    using System.Linq;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Windows;
@@ -13,7 +13,6 @@ namespace TicTacToe.DesktopClient
     using TicTacToe.DesktopClient.Common;
     using TicTacToe.DesktopClient.Game;
     using TicTacToe.DesktopClient.User;
-    using Microsoft.AspNet.SignalR.Client;
     using TicTacToe.DesktopClient.Windows;
 
     public partial class GameWindow : Window
