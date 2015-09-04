@@ -11,7 +11,7 @@
         {
             var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
 
-            return userIdentity;
+            return userIdentity; 
         }
 
         public int? GameId { get; set; }
