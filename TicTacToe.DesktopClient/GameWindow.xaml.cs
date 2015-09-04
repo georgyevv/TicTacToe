@@ -17,13 +17,6 @@
 
     public partial class GameWindow : Window
     {
-        ////////////////////////////////////
-        public IHubProxy HubProxy { get; set; }
-        private const string ServerURI = "http://3t.azurewebsites.net/signalr";
-        //private const string ServerURI = "http://tictactoe-18.apphb.com/signalr";
-        //private const string ServerURI = "http://localhost:61587/signalr"; // TODO: Comment this in production!
-        public HubConnection Connection { get; set; }
-        ///////////////////////////////////
         private LoginData loginData;
         private IGameData gameData;
         private string _placement;
@@ -74,6 +67,9 @@
                 };
             }
         }
+
+        public IHubProxy HubProxy { get; set; }
+        public HubConnection Connection { get; set; }
 
         protected override void OnSourceInitialized(EventArgs e)
         {
@@ -324,7 +320,7 @@
 
         private async void HubConnectAsync()
         {
-            Connection = new HubConnection(ServerURI);
+            Connection = new HubConnection(Strings.ServerUri);
             Connection.Closed += Connection_Closed;
             HubProxy = Connection.CreateHubProxy("GameHub");
             HubProxy.On("RefreshGameInfo", () =>

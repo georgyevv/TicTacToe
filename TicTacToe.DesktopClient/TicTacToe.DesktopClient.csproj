@@ -117,6 +117,7 @@
     <Compile Include="Common\ExtensionMethods.cs" />
     <Compile Include="Common\GameMode.cs" />
     <Compile Include="Common\GameState.cs" />
+    <Compile Include="Common\Strings.cs" />
     <Compile Include="Common\Test.cs" />
     <Compile Include="Game\MultiPlayerGame.cs" />
     <Compile Include="Game\OnlineGame.cs" />

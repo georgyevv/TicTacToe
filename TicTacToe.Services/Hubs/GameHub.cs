@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace TicTacToe.Services.Hubs
+﻿namespace TicTacToe.Services.Hubs
 {
     using Microsoft.AspNet.SignalR;
     

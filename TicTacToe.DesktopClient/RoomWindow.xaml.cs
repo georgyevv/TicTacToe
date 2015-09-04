@@ -13,13 +13,6 @@
 
     public partial class RoomWindow : Window
     {
-        ////////////////////////////////////
-        private IHubProxy HubProxy { get; set; }
-        private const string ServerUri = "http://3t.azurewebsites.net/signalr";
-        //private const string ServerUri = "http://tictactoe-18.apphb.com/signalr";
-        //private const string ServerUri = "http://localhost:61587/signalr"; // TODO: Comment this in production!
-        private HubConnection Connection { get; set; }
-        ///////////////////////////////////
         private bool shouldCloseWindow;
         private LoginData loginData;
         private string _placement;
@@ -33,6 +26,9 @@
             UpdateRooms();
             HubConnectAsync();
         }
+
+        private IHubProxy HubProxy { get; set; }
+        private HubConnection Connection { get; set; }
 
         protected override void OnSourceInitialized(EventArgs e)
         {
@@ -163,7 +159,7 @@
 
         private async void HubConnectAsync()
         {
-            Connection = new HubConnection(ServerUri);
+            Connection = new HubConnection(Strings.ServerUri);
             HubProxy = Connection.CreateHubProxy("GameHub");
             HubProxy.On("UpdateRooms", () =>
                 this.Dispatcher.Invoke(UpdateRooms));
